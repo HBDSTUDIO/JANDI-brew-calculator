@@ -93,7 +93,7 @@
   }
   /* 하단 라이트 블리드 */
   .card::after{
-    content:""; position:absolute; left:1px; right:1px; bottom:1px; height:26%;
+    content:""; position:absolute; left:1px; right:1px; bottom:1px; height:clamp(44px, 22%, 92px);
     border-radius:0 0 calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px); pointer-events:none; z-index:0;
     background:linear-gradient(180deg, transparent 0%, rgba(76,155,255,.07) 55%, rgba(96,170,255,.22) 100%);
   }
@@ -173,8 +173,7 @@
 
   /* ── 차트 : 딥 네이비 패널 ── */
   .figbox{padding:16px 6px 10px;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;
-    border-radius:var(--r-lg) var(--r-lg) 0 0;
-    background:rgba(4,9,19,.72)}
+    border-radius:var(--r-lg) var(--r-lg) 0 0;background:transparent}
   .figbox svg{display:block;min-width:760px;width:100%;height:auto}
   .gmin{stroke:rgba(140,180,255,.045);stroke-width:1}
   .gdiv{stroke:rgba(140,180,255,.15);stroke-width:1}
@@ -214,8 +213,7 @@
 
   /* ── 표 ── */
   .scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;
-    border-radius:var(--r-lg) var(--r-lg) 0 0;
-    background:rgba(4,9,19,.62)}
+    border-radius:var(--r-lg) var(--r-lg) 0 0;background:transparent}
   table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:620px}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--rule-soft)}
   thead th{font-family:var(--mono);font-size:.59rem;letter-spacing:.13em;text-transform:uppercase;color:var(--steel);
@@ -225,6 +223,8 @@
   tbody tr:hover td{background:rgba(76,155,255,.07)}
   tbody tr.sel td{background:rgba(76,155,255,.15)}
   td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  /* 원두 이름: 7글자까지 한 줄, 그 이상은 줄바꿈 */
+  th:nth-child(2),td:nth-child(2){min-width:8.2em;overflow-wrap:anywhere}
   .idx{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50%;
     background:linear-gradient(180deg,var(--acc-2),var(--acc-deep));color:#fff;font-family:var(--mono);
     font-size:.66rem;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
@@ -504,8 +504,8 @@
     var el=document.getElementById("chart");
     var w=(el&&el.parentNode&&el.parentNode.clientWidth)||window.innerWidth||900;
     return (w<560)
-      ? {nw:true,  X0:132,X1:832,Y0:64,Y1:600,H:770, xStep:4,tStep:0.20,gx:1,gt:0.10, r:11,ring:16,hit:30, corners:false,ratioLbl:false}
-      : {nw:false, X0:78, X1:812,Y0:44,Y1:556,H:620, xStep:2,tStep:0.10,gx:0.5,gt:0.05, r:5, ring:7.5,hit:15, corners:true, ratioLbl:true};
+      ? {nw:true,  X0:132,X1:832,Y0:64,Y1:700,H:888, xStep:4,tStep:0.20,gx:1,gt:0.10, r:11,ring:16,hit:30, corners:false,ratioLbl:false}
+      : {nw:false, X0:78, X1:812,Y0:44,Y1:620,H:712, xStep:2,tStep:0.10,gx:0.5,gt:0.05, r:5, ring:7.5,hit:15, corners:true, ratioLbl:true};
   }
   function sx(e){return X0+(e-EL)/(EH-EL)*(X1-X0);}
   function sy(t){return Y0+(TH-t)/(TH-TL)*(Y1-Y0);}
