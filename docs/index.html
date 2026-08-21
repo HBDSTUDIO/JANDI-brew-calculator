@@ -271,10 +271,19 @@
 </head>
 <body>
 <script>
-  /* 오프라인 캐시 */
+  /* 오프라인 캐시 + 새 버전 자동 반영 */
   if ("serviceWorker" in navigator) {
+    var hadCtrl = !!navigator.serviceWorker.controller, didReload = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (!hadCtrl || didReload) return;   /* 최초 설치 때는 새로고침 안 함 */
+      didReload = true;
+      location.reload();
+    });
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {});
+      /* updateViaCache:"none" -> sw.js 를 HTTP 캐시 무시하고 매번 확인 */
+      navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" })
+        .then(function (reg) { reg.update(); })
+        .catch(function () {});
     });
   }
 </script>
