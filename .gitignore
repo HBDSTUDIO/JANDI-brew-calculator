@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+._*
+
+# Firebase (firebase init / deploy 사용 시 생성됨)
+.firebase/
+firebase-debug.log
+*-debug.log
+
+# Node (firebase-tools 로컬 설치 시)
+node_modules/

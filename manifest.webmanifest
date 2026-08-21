@@ -1,0 +1,17 @@
+{
+  "name": "추출 기록 계산기",
+  "short_name": "추출 계산기",
+  "description": "분쇄도·TDS·서빙으로 수율을 계산하고 SCA 차트에 기록하는 계산기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EDEFF2",
+  "theme_color": "#B06E11",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

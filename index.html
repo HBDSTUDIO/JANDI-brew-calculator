@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="추출 계산기">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#B06E11">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAwKADAAQAAAABAAAAwAAAAABu8xvwAAAKYElEQVR4Ae2dz28b5RaGj+04acMlTaG0Be5VKVAVqAAJRFU2QFcsQCqlbNiwgC0sWCAk+AMQO4RAQkKqBEIIsWHBArFBgPh1rygq4qoSXJXy4xYKrUjTJnGaODbzxfnGSeQkHnvm+Mw3j6t0JvbMnPM97/vaM854XPrn7r1N4RYEgR9OHJfNmzYFMRatQZS1ClEHAhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEACLqtCTGgECoIaaQhYJEIABqfLQzVNy+85LA6pOWU9gyM8w1SNwZN9FOXh9TRYaIkePbZFvz4zoFafSCgK8AqzAkf0v3vyuUiWi/+BNU1Iu8bHs7Ml3rkAAOnPJ5N7l5ncFzk5X5JWvxqXRLGVSj41uTIAAbMwolSU6mf+lL8ZlcraSyvbZSG8ECEBv3BKthfkT4VJdmABkjBvzZwy4z80TgD4Brrc65l+Pjo3HCEBGOmD+jMCmvFkCkDJQtznMnwHUjDap/oewUqkk1eHhjIYz+M0e2jsh9+6qxY24tzp5tyfGYW5GPQDO/Nf+6zpzINJo6L7tJ+XOK6fiTWH+GIXZGfUAeBL///lHWXDnAgRyO3zLZGT+mXg052rV6Jl/jPf5YyI2ZwYWAGf+RmPBJpWEXS3u8+9u7/ZMXBqR149fE5l/OuGWWFybAAfBfRLvdMD79sl9cmFuYM8tfY6oWKsTgD707mR+d8A7VQ/3IL8PXCZXJQA9yrKW+Tm3p0egA1qNAPQAHvP3AM3oKgQgoTCYPyEw44sTgAQCYf4EsHKyKAHoUijM3yWonC1GALoQDPN3ASmnixCADYTD/BsAyvnDBGAdATH/OnACeYgArCEk5l8DTGB3E4AOgmL+DlACvYsArBIW868CEvivhTljq9lsSrPRkMWpNKXk/pWjn1I5+mldlwfzB+72DsMLPgDO8AsLdWksdDj1eumuSmVIjtxaW7xcoWfEh1k8ibCnQe8CNZsNmZ+f62z+Zbq6gHz9S0kuzLZeCTD/MjiBzwb7CuCe+efn5iP5WtfdvHHnsDx2z1bZf+OojI9W5NzFunz+/bS88cmE/DZRlx//GpKXPxuVx/fPyqv/5optgfs+Hl6wAajX2+Z/eP+YPHtouwxV2tfgvHprVR45MC4P3DEmz79zRj45MS2/nK/Iix9fLgslLlcYOyTwmSB3gRruYDf6cbe794zKc4dXmn+5ppuHy/LCoztlz9WtD7HU5loHysuXYT5cAoEGoH3A+/SD2+J3edaScaRalifv3xY/HMpnleMBMbMmgSAD4J/9d22ryg07uvvyiQPRK8XocGsXya+/JjUeCIZAmAFYkufaK6pdC+WOD3aMt5aPjp+5FYRAkAHwh7q1+WROdvv/ize/gYKYoMjDDDIA0U7/oqbfn56VuXp3F986e6EuZ87XW/5fWr/IxijK2IMMQLncGtbMXFPeP3axKy3f/fJ8vJxfP76DmWAJBBqA9vv4L39wTk79ObeugN+cqsmbn04sLuPOC3LnB3ErBoEglXYmPrCrtTszNduQJ177VT76b/uitV7aRqMp7/1nUp46elrq/rygoaEN3zb16zPNP4Eg/xLsz+rcMjIiH/4wIpMzDXnmrd/luquqctcN0akQl0WnQkT7/F/+bybe73dSViLzl8vtV4/8y8sINiIQXAC8+d3Aj9x2SYajEb5/ovW3gJ/OzstPZyc7Mhkaqkq5gvk7wgn4zqACsNz8TjN3VudXp/8RfSFHefGUaP95AK+n21Vyz/jO+P4zAf4xpsUgEEwAOpnffzOLe1fTPcO7mztL1N0w/CKGwv8XRADWM/9qhTH+aiLF/j337wIlMX+xpWb0nQjkOgCYv5Ok3JeEQG4DgPmTyMyyaxHIZQAw/1pycn9SArkLAOZPKjHLr0cgVwHA/OtJyWO9EMhNADB/L/KyzkYEchEAzL+RjDzeKwHzAcD8vUrLet0QMB0AzN+NhCzTDwGzAcD8/cjKut0SMBkAzN+tfCzXLwFzAcD8/UrK+kkImAoA5k8iHcumQcBMADB/GnKyjaQETAQA8yeVjeXTIjDwAGD+tKRkO70QGGgAMH8vkrFOmgQG9pHIw7dMysHdtXgsfC1RjIIZRQIDCcB920/KnVfOxMPE/DEKZpQJqAfg0N6JyPztq7RhfmXFKbeCgGoA3D7/vbvauz0Tl0bk3Z/3ydiOYRlb0Va+f3FXmOOWDwJqSq0+4D1Xq8rrx6+RC3PdXb05HzjbXc7W2kFv38ucNQIqAVht/tZuz5hMzk5b40E/BSOQ+dugnc3P9/AWzGdmh5tpADC/Wd1pbIlAZgHA/HgsDwQyCQDmz4P09OgIpB4AzI+x8kQg1QBg/jxJT6+OQGoBeOjmKTl4ffu9b/7Ci8HyQCC1AJyaqMrC0lfyYv48SE+PjkBqAfj2zIgcPbZFfr9YEf/NLCCGgHUCqf4l2IXguz+GpdFsfVO79cHTHwRSewXwKDG/J8E0DwRSD0AeBk2PEPAECIAnwbSQBAhAIWVn0J4AAfAkmBaSAAEopOwM2hMgAJ4E00ISIACFlJ1BewIEwJNgWkgCBKCQsjNoT4AAeBJMC0mAABRSdgbtCRAAT4JpIQkQgELKzqA9AQLgSTAtJAECUEjZGbQnQAA8CaaFJFCaqdWahRx5gIPevGlTgKPKdkilZnTLtgRbh4BdAuwC2dWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQIEAAFyJSwS4AA2NWGzhQI/A24GvirbUazngAAAABJRU5ErkJggg==">
+<title>추출 기록 계산기</title>
+<meta name="description" content="분쇄도·TDS·서빙을 넣으면 수율을 계산하고 SCA 차트에 기록하며 다음 분쇄도를 조언하는 오프라인 계산기.">
+<style>
+  :root{
+    --ground:#EDEFF2; --surface:#FFFFFF; --surface-2:#F5F7F9;
+    --ink:#15181C; --ink-2:#3D454E; --steel:#69737E; --steel-2:#96A0AB;
+    --rule:#D5DBE1; --rule-soft:#E4E9ED;
+    --amber:#B06E11; --amber-ink:#8A5509; --amber-wash:#FBF2E2; --on-amber:#FFFFFF;
+    --good:#2C6E52; --good-wash:#EAF3EE;
+    --warn:#A66A12; --warn-wash:#FBF2E2;
+    --bad:#A8413A; --bad-wash:#FAEEED;
+    --display:"Helvetica Neue","Inter","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    --body:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Menlo","Consolas",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ground:#0F1216; --surface:#161A1F; --surface-2:#1C2127;
+    --ink:#E6EAEE; --ink-2:#BFC7CF; --steel:#8B95A0; --steel-2:#6A747E;
+    --rule:#2A3138; --rule-soft:#21272D;
+    --amber:#E3A244; --amber-ink:#F0BC72; --amber-wash:#241C0E; --on-amber:#15181C;
+    --good:#62B78E; --good-wash:#12241B;
+    --warn:#D9A052; --warn-wash:#241C0E;
+    --bad:#E0837B; --bad-wash:#2A1918;
+  }}
+  :root[data-theme="dark"]{
+    --ground:#0F1216; --surface:#161A1F; --surface-2:#1C2127;
+    --ink:#E6EAEE; --ink-2:#BFC7CF; --steel:#8B95A0; --steel-2:#6A747E;
+    --rule:#2A3138; --rule-soft:#21272D;
+    --amber:#E3A244; --amber-ink:#F0BC72; --amber-wash:#241C0E; --on-amber:#15181C;
+    --good:#62B78E; --good-wash:#12241B;
+    --warn:#D9A052; --warn-wash:#241C0E;
+    --bad:#E0837B; --bad-wash:#2A1918;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--ground);-webkit-tap-highlight-color:transparent;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;margin:0;-webkit-font-smoothing:antialiased;word-break:keep-all}
+  .wrap{max-width:1000px;width:100%;min-width:0;margin:0 auto;padding:44px 24px 96px;display:flex;flex-direction:column;gap:30px}
+  h1{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;letter-spacing:-0.035em;line-height:1.1;margin:0}
+  h2{font-family:var(--display);font-size:1.02rem;font-weight:700;letter-spacing:-0.01em;margin:0}
+  p{margin:0}
+  .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel);margin:0}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  strong{font-weight:700;color:var(--ink)}
+  header{display:flex;flex-direction:column;gap:8px}
+  section{display:flex;flex-direction:column;gap:14px;min-width:0}
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;min-width:0}
+
+  /* form */
+  form{display:flex;flex-direction:column;gap:0}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;background:var(--rule-soft)}
+  .f{background:var(--surface);padding:11px 14px 13px;display:flex;flex-direction:column;gap:5px;min-width:0}
+  .f label{font-family:var(--mono);font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+  .f input{font-family:var(--mono);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;
+    background:transparent;border:0;border-bottom:1px solid var(--rule);color:var(--ink);padding:2px 0 4px;width:100%;min-width:0}
+  .f input[type=text]{font-family:var(--body);font-weight:500;font-size:16px}
+  .f input:focus{outline:0;border-bottom-color:var(--amber)}
+  .f input::placeholder{color:var(--steel-2);font-weight:400}
+  .frow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px;border-top:1px solid var(--rule)}
+  button{font-family:var(--body);font-size:.88rem;font-weight:600;border-radius:3px;cursor:pointer;border:1px solid var(--rule);
+    background:var(--surface-2);color:var(--ink);padding:9px 16px;line-height:1.2}
+  button:hover{border-color:var(--steel-2)}
+  button.primary{background:var(--amber);border-color:var(--amber);color:var(--on-amber)}
+  button.primary:hover{filter:brightness(1.06)}
+  button.ghost{background:transparent}
+  button:focus-visible,input:focus-visible,.del:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+  .hint{font-size:.78rem;color:var(--steel);flex:1 1 180px;min-width:140px}
+  .hint.err{color:var(--bad);font-weight:600}
+  .tgtrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 18px;padding:12px 14px;
+    border-top:1px solid var(--rule);background:var(--amber-wash)}
+  .tgtlab{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--amber-ink);font-weight:700;padding-bottom:5px}
+  .tgtf{display:flex;align-items:baseline;gap:7px;min-width:0}
+  .tgtf label{font-family:var(--mono);font-size:.66rem;color:var(--steel);white-space:nowrap}
+  .tgtf input{font-family:var(--mono);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;
+    background:transparent;border:0;border-bottom:1px solid var(--amber);color:var(--ink);
+    padding:2px 0 3px;width:66px;text-align:right}
+  .tgtf input:focus{outline:0;border-bottom-width:2px}
+  .tgtnote{font-size:.75rem;color:var(--warn);flex:1 1 160px}
+  .tgt{stroke:var(--ink-2);stroke-width:1.5;fill:none}
+  .tgtlbl{fill:var(--ink-2);font-family:var(--mono);font-size:10.5px;font-weight:700}
+
+  /* result */
+  .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:1px;background:var(--rule-soft)}
+  .rc{background:var(--surface);padding:13px 15px 15px;display:flex;flex-direction:column;gap:3px}
+  .rc dt{font-family:var(--mono);font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+  .rc dd{margin:0;font-family:var(--mono);font-size:1.16rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+  .rc.key dd{color:var(--amber-ink)}
+  .advice{padding:16px 18px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:9px}
+  .vtag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.68rem;font-weight:700;
+    letter-spacing:.09em;padding:4px 9px;border-radius:3px;align-self:flex-start}
+  .v-ideal{background:var(--good-wash);color:var(--good)}
+  .v-strong,.v-weak{background:var(--warn-wash);color:var(--warn)}
+  .v-under,.v-over,.v-ratio{background:var(--bad-wash);color:var(--bad)}
+  .advice p{font-size:.9rem;color:var(--ink-2)}
+  .advice .big{font-size:1.02rem;color:var(--ink)}
+  .sens{font-family:var(--mono);font-size:.72rem;color:var(--steel-2)}
+
+  /* chart */
+  .figbox{padding:16px 6px 8px;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+  .figbox svg{display:block;min-width:760px;width:100%;height:auto}
+  .gmin{stroke:var(--rule-soft);stroke-width:1}
+  .gdiv{stroke:var(--rule);stroke-width:1}
+  .axis,.tick{stroke:var(--steel-2);stroke-width:1}
+  .zone{fill:var(--amber-wash)}
+  .rline{stroke:var(--steel-2);stroke-width:1.15;opacity:.6}
+  .rhl{stroke:var(--amber);stroke-width:2.5}
+  .rlbl{fill:var(--steel);font-family:var(--mono);font-size:10px}
+  .rlblhl{fill:var(--amber-ink);font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .zlbl{fill:var(--steel-2);font-family:var(--body);font-size:11px}
+  .zideal{fill:var(--amber-ink);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em}
+  .atick{fill:var(--steel);font-family:var(--mono);font-size:10.5px;font-variant-numeric:tabular-nums}
+  .axtitle{fill:var(--ink-2);font-family:var(--body);font-size:12px}
+  .ring{fill:var(--surface)}
+  .pt{fill:var(--amber)}
+  .pt.old{fill:var(--surface);stroke:var(--amber);stroke-width:2}
+  .pt.sel{stroke:var(--ink);stroke-width:2}
+  .hit{fill:transparent;cursor:pointer}
+  .plbl{fill:var(--ink);font-family:var(--mono);font-size:11px;font-weight:700}
+
+  /* table */
+  .scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:620px}
+  th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--rule-soft)}
+  thead th{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);font-weight:600;background:var(--surface-2);border-bottom:1px solid var(--rule);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr{cursor:pointer}
+  tbody tr:hover td{background:var(--surface-2)}
+  tbody tr.sel td{background:var(--amber-wash)}
+  td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .idx{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;
+    background:var(--amber);color:#fff;font-family:var(--mono);font-size:.66rem;font-weight:700}
+  .idx.old{background:transparent;color:var(--amber-ink);border:1.5px solid var(--amber)}
+  .vs{font-family:var(--mono);font-size:.61rem;font-weight:600;letter-spacing:.06em;padding:2px 6px;border-radius:2px;white-space:nowrap}
+  .del{background:transparent;border:0;color:var(--steel-2);font-size:1.05rem;line-height:1;cursor:pointer;padding:3px 7px;border-radius:3px;font-family:var(--mono)}
+  .del:hover{color:var(--bad);background:var(--bad-wash)}
+  .empty{padding:26px 16px;text-align:center;color:var(--steel);font-size:.88rem}
+  .tfoot{display:flex;justify-content:flex-end;padding:12px 14px;border-top:1px solid var(--rule)}
+  .legend{display:flex;flex-wrap:wrap;gap:9px 20px;font-size:.76rem;color:var(--ink-2);padding:0 6px 6px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:18px;height:0;border-top:2px solid var(--steel-2)}
+  .sw.hl{border-top-color:var(--amber);border-top-width:2.5px}
+  .dt{width:10px;height:10px;border-radius:50%;background:var(--amber)}
+  .dt.o{background:transparent;border:2px solid var(--amber)}
+  .bx{width:14px;height:10px;background:var(--amber-wash);border:1px solid var(--rule)}
+  .tk{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2)}
+  @media (max-width:600px){
+    .wrap{padding:20px 13px 64px;gap:20px}
+    .fgrid{grid-template-columns:repeat(2,1fr)}
+    .f{padding:10px 12px 12px}
+    .f input{font-size:17px}
+    button{padding:12px 18px;font-size:.92rem}
+    .del{padding:11px 13px;font-size:1.2rem}
+    .figbox svg{min-width:660px}
+    table{min-width:560px}
+    th,td{padding:11px 11px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+  body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .theme-btn{position:fixed;top:calc(10px + env(safe-area-inset-top));right:calc(10px + env(safe-area-inset-right));
+    z-index:60;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--steel);background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:8px 11px;cursor:pointer;line-height:1}
+  @media print{.theme-btn{display:none}}
+</style>
+</head>
+<body>
+<button class="theme-btn" id="tt" type="button" aria-label="밝은 테마와 어두운 테마 전환">Theme</button>
+<script>
+  (function(){var r=document.documentElement,b=document.getElementById('tt');
+   b.addEventListener('click',function(){
+     var d=window.matchMedia('(prefers-color-scheme: dark)').matches;
+     var c=r.getAttribute('data-theme')||(d?'dark':'light');
+     r.setAttribute('data-theme',c==='dark'?'light':'dark');});})();
+  /* 오프라인 캐시 — https 또는 localhost 에서만 등록됨 */
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    });
+  }
+</script>
+
+<div class="wrap">
+
+  <noscript>
+    <div class="card" style="padding:16px 18px;border-color:var(--bad)">
+      <p style="font-size:.92rem;color:var(--bad);font-weight:700">자바스크립트가 실행되지 않고 있습니다.</p>
+      <p style="font-size:.86rem;color:var(--ink-2);margin-top:6px">iOS <strong>파일</strong> 앱의 미리보기는 스크립트를 실행하지 않습니다.
+      계산이 되려면 스크립트가 동작하는 브라우저에서 열어야 합니다.</p>
+    </div>
+  </noscript>
+
+  <header>
+    <p class="eyebrow">Lagom Casa · Orea O1</p>
+    <h1>추출 기록 계산기</h1>
+  </header>
+
+  <section>
+    <div class="card">
+      <form id="fm" autocomplete="off" novalidate>
+        <div class="fgrid">
+          <div class="f" style="grid-column:span 2"><label for="i-bean">원두</label>
+            <input type="text" id="i-bean" placeholder="이름 (생략 가능)"></div>
+          <div class="f"><label for="i-grind">분쇄도</label>
+            <input type="number" id="i-grind" step="0.05" min="0" placeholder="17.0"></div>
+          <div class="f"><label for="i-tds">TDS %</label>
+            <input type="number" id="i-tds" step="0.01" min="0.3" max="3" placeholder="1.35"></div>
+          <div class="f"><label for="i-bev">서빙 g</label>
+            <input type="number" id="i-bev" step="0.1" min="1" placeholder="215"></div>
+          <div class="f"><label for="i-dose">도징 g</label>
+            <input type="number" id="i-dose" step="0.1" min="1" value="15"></div>
+          <div class="f"><label for="i-water">물 g</label>
+            <input type="number" id="i-water" step="1" min="1" value="250"></div>
+        </div>
+        <div class="tgtrow">
+          <p class="tgtlab">목표 지점</p>
+          <div class="tgtf"><label for="i-tey">수율 %</label>
+            <input type="number" id="i-tey" step="0.1" min="14" max="26" value="20.0"></div>
+          <div class="tgtf"><label for="i-ttds">TDS %</label>
+            <input type="number" id="i-ttds" step="0.01" min="0.80" max="2.00" value="1.40"></div>
+          <p class="tgtnote" id="tgtnote"></p>
+        </div>
+        <div class="frow">
+          <button type="submit" class="primary">점 찍기</button>
+          <button type="button" class="ghost" id="b-copy">링크 복사</button>
+          <button type="button" class="ghost" id="b-reset">새로 시작</button>
+          <p class="hint" id="hint">기록은 자동 저장되고, 주소에도 담깁니다. <strong>링크 복사</strong>로 백업하거나 다른 기기로 옮길 수 있습니다.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="sec-res" hidden>
+    <h2 id="res-title">결과</h2>
+    <div class="card">
+      <dl class="res" id="res"></dl>
+      <div class="advice" id="adv"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>SCA 추출 관리 차트</h2>
+    <div class="card">
+      <div class="figbox"><svg id="chart" viewBox="0 0 860 620" role="img"
+        aria-label="SCA 추출 관리 차트. 가로축 추출 수율 14~26%, 세로축 TDS 0.90~1.80%. SCA Ideal 영역은 수율 18~22%, TDS 1.15~1.45%."></svg></div>
+      <div class="legend">
+        <span><span class="sw hl"></span><span id="lg-ratio">현재 비율</span></span>
+        <span><span class="sw"></span>다른 비율</span>
+        <span><span class="dt"></span>최근 기록</span>
+        <span><span class="dt o"></span>이전 기록</span>
+        <span><span class="bx"></span>SCA Ideal</span>
+        <span><span class="tk"></span>목표 지점</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>기록</h2>
+    <div class="card">
+      <div class="scroll">
+        <table>
+          <thead><tr>
+            <th class="n">#</th><th>원두</th><th class="n">분쇄도</th><th class="n">TDS</th>
+            <th class="n">서빙</th><th class="n">비율</th><th class="n">수율</th><th class="n">판정</th><th></th>
+          </tr></thead>
+          <tbody id="tb"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty">아직 기록이 없습니다.</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var BOX={eLo:18,eHi:22,tLo:1.15,tHi:1.45}, SENS_DEF=0.6, KEY="brewcalc.v1";
+  var S={rec:[],sel:null,tEy:20.0,tTds:1.40};
+
+  function enc(){
+    return "*|"+S.tEy+"|"+S.tTds+";"+S.rec.map(function(r){
+      return [String(r.bean).replace(/[|;#]/g,""),r.grind,r.tds,r.bev,r.dose,r.water].join("|");
+    }).join(";");
+  }
+  function dec(t){
+    var parts=t.split(";").filter(Boolean);
+    if(parts.length && parts[0].charAt(0)==="*"){
+      var tp=parts.shift().split("|");
+      var a=parseFloat(tp[1]), b=parseFloat(tp[2]);
+      if(isFinite(a)) S.tEy=a;
+      if(isFinite(b)) S.tTds=b;
+    }
+    return parts.map(function(x,i){
+      var p=x.split("|");
+      return {id:"h"+i+"_"+Math.random().toString(36).slice(2,6),bean:decodeURIComponent(p[0]||"원두"),
+              grind:+p[1],tds:+p[2],bev:+p[3],dose:+p[4],water:+p[5]};
+    }).filter(function(r){
+      return isFinite(r.grind)&&isFinite(r.tds)&&isFinite(r.bev)&&r.dose>0&&r.water>0;
+    });
+  }
+  function load(){
+    var h=(location.hash||"").replace(/^#d=/,"");
+    if(h && location.hash.indexOf("#d=")===0){
+      try{ S.rec=dec(decodeURIComponent(h)); if(S.rec.length) return; }catch(e){}
+    }
+    try{var r=localStorage.getItem(KEY);if(r)S.rec=JSON.parse(r)||[];}catch(e){}
+  }
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify(S.rec));}catch(e){}
+    var frag="#d="+encodeURIComponent(enc());
+    try{ history.replaceState(null,"",location.pathname+location.search+frag); }
+    catch(e){ try{ location.hash="d="+encodeURIComponent(enc()); }catch(e2){} }
+  }
+  function copyLink(){
+    var url=location.href, btn=document.getElementById("b-copy");
+    function done(ok){ btn.textContent=ok?"복사됨":"복사 실패"; setTimeout(function(){btn.textContent="링크 복사";},1600); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){done(true);},function(){done(false);});
+    }else{
+      try{ var ta=document.createElement("textarea"); ta.value=url;
+        ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta);
+        ta.select(); var ok=document.execCommand("copy"); document.body.removeChild(ta); done(ok);
+      }catch(e){ done(false); }
+    }
+  }
+
+  function calc(r){
+    var ey=r.tds*r.bev/r.dose, ratio=r.water/r.dose, ret=(r.water-r.bev)/r.dose;
+    return {ey:ey,ratio:ratio,ret:ret};
+  }
+  function verdict(ey,tds){
+    if(ey<BOX.eLo) return {k:"under",l:"과소추출"};
+    if(ey>BOX.eHi) return {k:"over",l:"과다추출"};
+    if(tds>BOX.tHi) return {k:"strong",l:"농도 초과 (Strong)"};
+    if(tds<BOX.tLo) return {k:"weak",l:"농도 부족 (Weak)"};
+    return {k:"ideal",l:"SCA Ideal"};
+  }
+  function sens(bean){
+    var pool=S.rec.filter(function(r){return r.bean===bean;});
+    if(new Set(pool.map(function(r){return r.grind;})).size<2) pool=S.rec;
+    var gs=new Set(pool.map(function(r){return r.grind;}));
+    if(gs.size<2) return {v:SENS_DEF,src:"기본값 (기록 2점 이상이면 자동 산출)"};
+    var n=pool.length,mx=0,my=0;
+    pool.forEach(function(r){mx+=r.grind;my+=calc(r).ey;});
+    mx/=n; my/=n;
+    var num=0,den=0;
+    pool.forEach(function(r){var dx=r.grind-mx;num+=dx*(calc(r).ey-my);den+=dx*dx;});
+    if(den===0) return {v:SENS_DEF,src:"기본값"};
+    var s=-(num/den);
+    if(!(s>0)) return {v:SENS_DEF,src:"기본값 (추세가 뒤집혀 있어 미사용)"};
+    var cl=Math.min(1.5,Math.max(0.2,s));
+    return {v:cl,src:"실측 "+n+"점에서 산출"+(cl!==s?" (범위 제한 적용)":"")};
+  }
+  function fmt(x,d){return x.toFixed(d===undefined?2:d);}
+
+  function advise(r){
+    var c=calc(r), v=verdict(c.ey,r.tds), sn=sens(r.bean);
+    var hiByTds=BOX.tHi*r.bev/r.dose, loByTds=BOX.tLo*r.bev/r.dose;
+    var reachHi=Math.min(BOX.eHi,hiByTds), reachLo=Math.max(BOX.eLo,loByTds);
+    var out={v:v,sens:sn,lines:[]};
+    if(reachLo>reachHi){
+      out.v={k:"ratio",l:"이 비율로는 박스 진입 불가"};
+      var needBev=BOX.eLo*r.dose/BOX.tHi, needW=needBev+c.ret*r.dose;
+      out.lines.push({big:true,t:"비율을 <strong>1:"+fmt(needW/r.dose,1)+"</strong> 이상으로 묽게 가져가세요."});
+      out.lines.push({t:"현재 비율 1:"+fmt(c.ratio,1)+"에서는 수율 "+fmt(BOX.eLo,0)+"%에 닿기 전에 TDS가 "+fmt(BOX.tHi,2)+"%를 넘습니다."});
+      return out;
+    }
+    var target=S.tEy;
+    var d=(target-c.ey)/sn.v;
+    var ng=r.grind-d;
+    var projTds=target*r.dose/r.bev;
+    if(Math.abs(d)<0.15){
+      out.lines.push({big:true,t:"현재 분쇄도 <strong>"+fmt(r.grind,2)+"</strong>을 유지하세요. 목표 지점입니다."});
+    }else if(d>0){
+      out.lines.push({big:true,t:"분쇄도를 <strong>"+fmt(ng,2)+"</strong>으로 <strong>"+fmt(d,2)+"넘버 가늘게</strong>."});
+    }else{
+      out.lines.push({big:true,t:"분쇄도를 <strong>"+fmt(ng,2)+"</strong>으로 <strong>"+fmt(-d,2)+"넘버 굵게</strong>."});
+    }
+    out.lines.push({t:"목표 수율 <strong>"+fmt(target)+"%</strong>에 닿으면 이 비율에서 TDS는 <strong>"+fmt(projTds)+"%</strong>가 됩니다."});
+    if(Math.abs(projTds-S.tTds)>0.02){
+      var nb=target*r.dose/S.tTds, nw=nb+c.ret*r.dose;
+      out.lines.push({t:"목표 TDS <strong>"+fmt(S.tTds)+"%</strong>까지 같이 맞추려면 비율을 <strong>1:"+fmt(nw/r.dose,1)+
+        "</strong>(물 "+fmt(nw,0)+"g)로 바꿔야 합니다. 지금 비율로는 두 목표가 동시에 성립하지 않습니다."});
+    }
+    if(target<BOX.eLo||target>BOX.eHi||S.tTds<BOX.tLo||S.tTds>BOX.tHi){
+      out.lines.push({t:"참고 — 설정한 목표가 SCA 박스(수율 18~22%, TDS 1.15~1.45%) 밖입니다."});
+    }
+    if(v.k==="strong"){
+      var bev2=c.ey*r.dose/1.40, w2=bev2+c.ret*r.dose;
+      out.lines.push({t:"수율을 지키면서 농도만 낮추려면 비율을 <strong>1:"+fmt(w2/r.dose,1)+"</strong>로 묽게 하는 방법도 있습니다."});
+    }
+    if(v.k==="weak"){
+      var bev3=c.ey*r.dose/1.25, w3=bev3+c.ret*r.dose;
+      out.lines.push({t:"농도만 올리려면 비율을 <strong>1:"+fmt(w3/r.dose,1)+"</strong>로 조이는 방법도 있습니다."});
+    }
+    out.lines.push({t:"이 비율에서 박스 안 수율 범위는 <strong>"+fmt(reachLo)+"% ~ "+fmt(reachHi)+"%</strong>입니다."});
+    return out;
+  }
+
+  // ---- chart ----
+  var X0=78,X1=812,Y0=44,Y1=556,EL=14,EH=26,TL=0.90,TH=1.80;
+  function sx(e){return X0+(e-EL)/(EH-EL)*(X1-X0);}
+  function sy(t){return Y0+(TH-t)/(TH-TL)*(Y1-Y0);}
+  function clip(k){
+    var p=[],e,t;
+    for(var i=0;i<2;i++){e=i?EH:EL;t=e*k;if(t>=TL&&t<=TH)p.push([e,t]);}
+    for(var j=0;j<2;j++){t=j?TH:TL;e=t/k;if(e>=EL&&e<=EH)p.push([e,t]);}
+    p.sort(function(a,b){return a[0]-b[0];});
+    return p.length>=2?[p[0],p[p.length-1]]:null;
+  }
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  function chart(){
+    var g=[],i,t,e;
+    for(i=0;i<25;i++){e=EL+i*0.5;g.push('<line class="gmin" x1="'+sx(e).toFixed(1)+'" y1="'+Y0+'" x2="'+sx(e).toFixed(1)+'" y2="'+Y1+'"/>');}
+    for(i=0;i<19;i++){t=TL+i*0.05;g.push('<line class="gmin" x1="'+X0+'" y1="'+sy(t).toFixed(1)+'" x2="'+X1+'" y2="'+sy(t).toFixed(1)+'"/>');}
+    g.push('<rect class="zone" x="'+sx(18).toFixed(1)+'" y="'+sy(1.45).toFixed(1)+'" width="'+(sx(22)-sx(18)).toFixed(1)+'" height="'+(sy(1.15)-sy(1.45)).toFixed(1)+'"/>');
+    [18,22].forEach(function(x){g.push('<line class="gdiv" x1="'+sx(x).toFixed(1)+'" y1="'+Y0+'" x2="'+sx(x).toFixed(1)+'" y2="'+Y1+'"/>');});
+    [1.15,1.45].forEach(function(y){g.push('<line class="gdiv" x1="'+X0+'" y1="'+sy(y).toFixed(1)+'" x2="'+X1+'" y2="'+sy(y).toFixed(1)+'"/>');});
+
+    var last=S.rec[S.rec.length-1];
+    var dose=last?last.dose:15, retg=2.5;
+    if(S.rec.length){var s=0;S.rec.forEach(function(r){s+=calc(r).ret;});retg=s/S.rec.length;}
+    var curR=last?calc(last).ratio:null;
+    var list=[14,15,16,17,18,19,20,21,22];
+    if(curR&&list.indexOf(Math.round(curR*10)/10)<0) list.push(Math.round(curR*10)/10);
+    list.sort(function(a,b){return a-b;});
+    list.forEach(function(R){
+      var bev=dose*R-retg*dose; if(bev<=0) return;
+      var k=dose/bev, sg=clip(k); if(!sg) return;
+      var hl=curR!==null&&Math.abs(R-curR)<0.06;
+      var nm="1:"+(R%1?R.toFixed(1):R);
+      g.push('<line class="'+(hl?"rhl":"rline")+'" x1="'+sx(sg[0][0]).toFixed(1)+'" y1="'+sy(sg[0][1]).toFixed(1)+'" x2="'+sx(sg[1][0]).toFixed(1)+'" y2="'+sy(sg[1][1]).toFixed(1)+'"/>');
+      var e2=sg[1][0],t2=sg[1][1],a=(e2>=EH-0.01)?"end":"middle",dx=(a==="end")?-6:0,dy=(a==="end")?-7:-8;
+      g.push('<text class="'+(hl?"rlblhl":"rlbl")+'" x="'+(sx(e2)+dx).toFixed(1)+'" y="'+(sy(t2)+dy).toFixed(1)+'" text-anchor="'+a+'">'+nm+'</text>');
+    });
+
+    [[16,1.62,"Strong & Under"],[20,1.62,"Strong"],[24,1.62,"Strong & Over"],
+     [16,1.30,"과소추출"],[24,1.30,"과다추출"],
+     [16,1.02,"Weak & Under"],[20,1.02,"Weak"],[24,1.02,"Weak & Over"]].forEach(function(z){
+      g.push('<text class="zlbl" x="'+sx(z[0]).toFixed(1)+'" y="'+sy(z[1]).toFixed(1)+'" text-anchor="middle">'+esc(z[2])+'</text>');
+    });
+    g.push('<text class="zideal" x="'+sx(20).toFixed(1)+'" y="'+sy(1.22).toFixed(1)+'" text-anchor="middle">SCA IDEAL</text>');
+
+    g.push('<line class="axis" x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'"/>');
+    g.push('<line class="axis" x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'"/>');
+    for(i=EL;i<=EH;i++){
+      var lb=i%2===0;
+      g.push('<line class="tick" x1="'+sx(i).toFixed(1)+'" y1="'+Y1+'" x2="'+sx(i).toFixed(1)+'" y2="'+(Y1+(lb?6:3))+'"/>');
+      if(lb) g.push('<text class="atick" x="'+sx(i).toFixed(1)+'" y="'+(Y1+22)+'" text-anchor="middle">'+i+'%</text>');
+    }
+    for(i=0;i<=18;i++){
+      t=TL+i*0.05; var lb2=(Math.round(t*100)%10)===0;
+      g.push('<line class="tick" x1="'+(X0-(lb2?6:3))+'" y1="'+sy(t).toFixed(1)+'" x2="'+X0+'" y2="'+sy(t).toFixed(1)+'"/>');
+      if(lb2) g.push('<text class="atick" x="'+(X0-11)+'" y="'+(sy(t)+4).toFixed(1)+'" text-anchor="end">'+t.toFixed(2)+'</text>');
+    }
+    g.push('<text class="axtitle" x="'+((X0+X1)/2).toFixed(1)+'" y="'+(Y1+52)+'" text-anchor="middle">추출 수율 (Extraction %)</text>');
+    g.push('<text class="axtitle" transform="translate(24,'+((Y0+Y1)/2).toFixed(1)+') rotate(-90)" text-anchor="middle">농도 TDS (%)</text>');
+
+    if(S.tEy>=EL&&S.tEy<=EH&&S.tTds>=TL&&S.tTds<=TH){
+      var tx=sx(S.tEy), ty=sy(S.tTds);
+      g.push('<circle class="tgt" cx="'+tx.toFixed(1)+'" cy="'+ty.toFixed(1)+'" r="9"/>');
+      g.push('<line class="tgt" x1="'+(tx-15).toFixed(1)+'" y1="'+ty.toFixed(1)+'" x2="'+(tx-4).toFixed(1)+'" y2="'+ty.toFixed(1)+'"/>');
+      g.push('<line class="tgt" x1="'+(tx+4).toFixed(1)+'" y1="'+ty.toFixed(1)+'" x2="'+(tx+15).toFixed(1)+'" y2="'+ty.toFixed(1)+'"/>');
+      g.push('<line class="tgt" x1="'+tx.toFixed(1)+'" y1="'+(ty-15).toFixed(1)+'" x2="'+tx.toFixed(1)+'" y2="'+(ty-4).toFixed(1)+'"/>');
+      g.push('<line class="tgt" x1="'+tx.toFixed(1)+'" y1="'+(ty+4).toFixed(1)+'" x2="'+tx.toFixed(1)+'" y2="'+(ty+15).toFixed(1)+'"/>');
+      g.push('<text class="tgtlbl" x="'+tx.toFixed(1)+'" y="'+(ty-20).toFixed(1)+'" text-anchor="middle">목표</text>');
+    }
+    S.rec.forEach(function(r,i){
+      var c=calc(r); if(c.ey<EL-2||c.ey>EH+2||r.tds<TL-.1||r.tds>TH+.1) return;
+      var cx=Math.max(X0,Math.min(X1,sx(c.ey))), cy=Math.max(Y0,Math.min(Y1,sy(r.tds)));
+      var newest=(i===S.rec.length-1), selc=(S.sel===r.id);
+      g.push('<circle class="hit" data-id="'+r.id+'" cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="15"><title>'+
+        esc(r.bean)+' · 분쇄도 '+r.grind+' · 수율 '+fmt(c.ey)+'% · TDS '+fmt(r.tds)+'% · 서빙 '+r.bev+'g</title></circle>');
+      g.push('<circle class="ring" cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="7.5"/>');
+      g.push('<circle class="pt'+(newest?"":" old")+(selc?" sel":"")+'" cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="5"/>');
+      g.push('<text class="plbl" x="'+(cx+12).toFixed(1)+'" y="'+(cy+4).toFixed(1)+'">'+(i+1)+'</text>');
+    });
+    document.getElementById("chart").innerHTML=g.join("");
+    document.getElementById("lg-ratio").textContent=curR?("현재 1:"+fmt(curR,1)):"현재 비율";
+  }
+
+  function render(){
+    var tb=document.getElementById("tb"), rows=[];
+    S.rec.forEach(function(r,i){
+      var c=calc(r), v=verdict(c.ey,r.tds), newest=(i===S.rec.length-1);
+      rows.push('<tr data-id="'+r.id+'" class="'+(S.sel===r.id?"sel":"")+'">'+
+        '<td class="n"><span class="idx'+(newest?"":" old")+'">'+(i+1)+'</span></td>'+
+        '<td>'+esc(r.bean)+'</td>'+
+        '<td class="n">'+fmt(r.grind,2)+'</td><td class="n">'+fmt(r.tds)+'%</td>'+
+        '<td class="n">'+fmt(r.bev,0)+'g</td><td class="n">1:'+fmt(c.ratio,1)+'</td>'+
+        '<td class="n"><strong>'+fmt(c.ey)+'%</strong></td>'+
+        '<td class="n"><span class="vs v-'+v.k+'">'+esc(v.l)+'</span></td>'+
+        '<td class="n"><button class="del" data-del="'+r.id+'" aria-label="'+(i+1)+'번 기록 삭제" title="삭제">&times;</button></td></tr>');
+    });
+    tb.innerHTML=rows.join("");
+    document.getElementById("empty").hidden=S.rec.length>0;
+
+    var sec=document.getElementById("sec-res");
+    var target=S.sel?S.rec.filter(function(r){return r.id===S.sel;})[0]:S.rec[S.rec.length-1];
+    if(!target){sec.hidden=true;chart();return;}
+    sec.hidden=false;
+    var c=calc(target), a=advise(target);
+    document.getElementById("res-title").textContent=target.bean+" · 분쇄도 "+fmt(target.grind,2);
+    document.getElementById("res").innerHTML=
+      '<div class="rc key"><dt>수율</dt><dd>'+fmt(c.ey)+'%</dd></div>'+
+      '<div class="rc key"><dt>TDS</dt><dd>'+fmt(target.tds)+'%</dd></div>'+
+      '<div class="rc"><dt>비율</dt><dd>1:'+fmt(c.ratio,1)+'</dd></div>'+
+      '<div class="rc"><dt>서빙</dt><dd>'+fmt(target.bev,0)+'g</dd></div>'+
+      '<div class="rc"><dt>고형분</dt><dd>'+fmt(target.tds/100*target.bev,2)+'g</dd></div>'+
+      '<div class="rc"><dt>보유수</dt><dd>'+fmt(c.ret)+'</dd></div>';
+    var h='<span class="vtag v-'+a.v.k+'">'+esc(a.v.l)+'</span>';
+    a.lines.forEach(function(l){h+='<p'+(l.big?' class="big"':'')+'>'+l.t+'</p>';});
+    h+='<p class="sens">감도 '+fmt(a.sens.v)+'pp / 넘버 — '+esc(a.sens.src)+'</p>';
+    document.getElementById("adv").innerHTML=h;
+    chart();
+  }
+
+  document.getElementById("fm").addEventListener("submit",function(ev){
+    ev.preventDefault();
+    var g=parseFloat(document.getElementById("i-grind").value),
+        td=parseFloat(document.getElementById("i-tds").value),
+        bv=parseFloat(document.getElementById("i-bev").value),
+        ds=parseFloat(document.getElementById("i-dose").value),
+        wt=parseFloat(document.getElementById("i-water").value),
+        bn=document.getElementById("i-bean").value.trim()||"원두";
+    var hint=document.getElementById("hint");
+    if(!isFinite(g)||!isFinite(td)||!isFinite(bv)||!isFinite(ds)||!isFinite(wt)||ds<=0||bv<=0){
+      hint.className="hint err"; hint.textContent="분쇄도·TDS·서빙 숫자를 채워주세요."; return;
+    }
+    if(bv>wt){hint.className="hint err"; hint.textContent="서빙("+bv+"g)이 물("+wt+"g)보다 많습니다."; return;}
+    hint.className="hint"; hint.innerHTML="기록은 자동 저장되고 주소에도 담깁니다. <strong>링크 복사</strong>로 백업하세요.";
+    S.rec.push({id:"r"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+      bean:bn,grind:g,tds:td,bev:bv,dose:ds,water:wt});
+    S.sel=null; save(); render();
+    document.getElementById("i-tds").value="";document.getElementById("i-bev").value="";
+    document.getElementById("i-grind").focus();
+  });
+
+  function syncTargets(){
+    var a=parseFloat(document.getElementById("i-tey").value),
+        b=parseFloat(document.getElementById("i-ttds").value),
+        n=document.getElementById("tgtnote"), msg="";
+    if(isFinite(a)&&a>=10&&a<=30) S.tEy=a; else msg="수율 목표를 확인해주세요.";
+    if(isFinite(b)&&b>=0.5&&b<=3)  S.tTds=b; else msg="TDS 목표를 확인해주세요.";
+    n.textContent=msg; save(); render();
+  }
+  document.getElementById("i-tey").addEventListener("input",syncTargets);
+  document.getElementById("i-ttds").addEventListener("input",syncTargets);
+  document.getElementById("b-copy").addEventListener("click",copyLink);
+  document.getElementById("b-reset").addEventListener("click",function(){
+    if(S.rec.length&&!confirm("기록을 모두 지울까요?"))return;
+    S.rec=[];S.sel=null;save();render();
+  });
+  document.getElementById("tb").addEventListener("click",function(ev){
+    var d=ev.target.closest("[data-del]");
+    if(d){var id=d.getAttribute("data-del");
+      S.rec=S.rec.filter(function(r){return r.id!==id;});
+      if(S.sel===id)S.sel=null; save(); render(); return;}
+    var tr=ev.target.closest("tr[data-id]");
+    if(tr){var i2=tr.getAttribute("data-id"); S.sel=(S.sel===i2)?null:i2; render();}
+  });
+  document.getElementById("chart").addEventListener("click",function(ev){
+    var h=ev.target.closest("[data-id]"); if(!h)return;
+    var id=h.getAttribute("data-id"); S.sel=(S.sel===id)?null:id; render();
+  });
+
+  load();
+  document.getElementById("i-tey").value=S.tEy;
+  document.getElementById("i-ttds").value=S.tTds;
+  render();
+})();
+</script>
+</body>
+</html>
