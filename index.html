@@ -57,11 +57,10 @@
   body::before{
     content:""; position:fixed; inset:-25%; z-index:-2; pointer-events:none;
     background:
-      radial-gradient(38vw 38vw at 14% 4%,  rgba(30,107,255,.70) 0%, transparent 60%),
-      radial-gradient(42vw 42vw at 88% 14%, rgba(139,123,255,.52) 0%, transparent 62%),
-      radial-gradient(36vw 36vw at 72% 62%, rgba(53,214,245,.34) 0%, transparent 60%),
-      radial-gradient(40vw 40vw at 20% 88%, rgba(76,155,255,.40) 0%, transparent 62%);
-    filter:blur(60px) saturate(150%);
+      radial-gradient(46vw 46vw at 10% 0%,  rgba(30,107,255,.20) 0%, transparent 62%),
+      radial-gradient(44vw 44vw at 94% 18%, rgba(120,110,235,.14) 0%, transparent 64%),
+      radial-gradient(44vw 44vw at 50% 100%,rgba(76,155,255,.16) 0%, transparent 64%);
+    filter:blur(80px);
   }
   body::after{
     content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -81,27 +80,22 @@
   /* ── 글래스 카드 : 내부 그라디언트 발광 + 컬러 글로우 ── */
   .card{
     position:relative; min-width:0; border-radius:var(--r-lg); isolation:isolate;
-    background:
-      radial-gradient(125% 95% at 14% -8%, rgba(76,155,255,.30) 0%, transparent 56%),
-      radial-gradient(110% 85% at 94% 4%,  rgba(139,123,255,.24) 0%, transparent 58%),
-      radial-gradient(120% 70% at 50% 108%, rgba(53,214,245,.20) 0%, transparent 62%),
-      linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.035) 100%),
-      var(--panel);
-    -webkit-backdrop-filter:blur(var(--blur)) saturate(200%);
-    backdrop-filter:blur(var(--blur)) saturate(200%);
-    border:1px solid var(--brd);
+    background:linear-gradient(180deg, rgba(11,18,32,.94) 0%, rgba(7,12,24,.95) 58%, rgba(6,10,20,.96) 100%);
+    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(120,170,255,.13);
     box-shadow:
-      inset 0 1px 0 var(--spec),
-      inset 0 -1px 0 rgba(76,155,255,.20),
-      0 26px 60px -28px rgba(30,107,255,.60),
-      0 2px 10px rgba(0,0,0,.5);
+      inset 0 1px 0 rgba(255,255,255,.09),
+      inset -1px 0 0 rgba(130,180,255,.07),
+      inset 0 -1px 0 rgba(110,175,255,.30),
+      0 22px 46px -26px rgba(30,107,255,.40),
+      0 2px 12px rgba(0,0,0,.55);
   }
   /* 하단 라이트 블리드 */
   .card::after{
-    content:""; position:absolute; left:12%; right:12%; bottom:-1px; height:44%;
-    border-radius:0 0 var(--r-lg) var(--r-lg); pointer-events:none; z-index:-1;
-    background:radial-gradient(120% 100% at 50% 116%, rgba(76,155,255,.55) 0%, rgba(76,155,255,.14) 42%, transparent 72%);
-    filter:blur(12px);
+    content:""; position:absolute; left:1px; right:1px; bottom:1px; height:26%;
+    border-radius:0 0 calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px); pointer-events:none; z-index:0;
+    background:linear-gradient(180deg, transparent 0%, rgba(76,155,255,.07) 55%, rgba(96,170,255,.22) 100%);
   }
   .card > *{position:relative;z-index:1}
   .card > :last-child{border-bottom-left-radius:var(--r-lg);border-bottom-right-radius:var(--r-lg)}
@@ -122,7 +116,7 @@
   button{
     font-family:var(--body);font-size:.88rem;font-weight:600;line-height:1.2;cursor:pointer;
     padding:12px 21px;border-radius:999px;color:var(--ink);
-    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+    background:rgba(255,255,255,.055);
     border:1px solid var(--brd);
     -webkit-backdrop-filter:blur(var(--blur-lite)) saturate(180%);
     backdrop-filter:blur(var(--blur-lite)) saturate(180%);
@@ -132,18 +126,17 @@
   button:hover{filter:brightness(1.14)}
   button:active{transform:scale(.962)}
   button.primary{
-    background:linear-gradient(180deg, var(--acc-2) 0%, var(--acc) 46%, var(--acc-deep) 100%);
-    border-color:rgba(255,255,255,.28); color:var(--on-acc); font-weight:700;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 8px 26px -8px rgba(76,155,255,.85);
+    background:var(--acc); border-color:rgba(255,255,255,.24); color:var(--on-acc); font-weight:700;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.42), 0 6px 20px -10px rgba(76,155,255,.7);
   }
-  button.ghost{background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.015))}
+  button.ghost{background:rgba(255,255,255,.03)}
   button:focus-visible,input:focus-visible,.del:focus-visible{outline:2px solid var(--acc-2);outline-offset:3px}
   .hint{font-size:.78rem;color:var(--steel);flex:1 1 180px;min-width:140px}
   .hint.err{color:var(--bad);font-weight:600}
 
   /* ── 목표 ── */
   .tgtrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:11px 18px;padding:14px 15px;
-    background:linear-gradient(180deg, rgba(53,214,245,.10), rgba(76,155,255,.06));
+    background:rgba(76,155,255,.055);
     border-top:1px solid var(--brd-soft);border-bottom:1px solid var(--brd-soft)}
   .tgtlab{font-family:var(--mono);font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;
     color:var(--cyan);font-weight:700;padding-bottom:5px}
@@ -163,11 +156,8 @@
   .rc{background:rgba(6,10,20,.34);padding:15px 16px 17px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
   .rc dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--steel)}
   .rc dd{margin:0;font-family:var(--mono);font-size:1.44rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.035em}
-  .rc.key{background:
-      radial-gradient(120% 130% at 22% 0%, rgba(76,155,255,.42) 0%, transparent 62%),
-      radial-gradient(110% 120% at 92% 108%, rgba(53,214,245,.32) 0%, transparent 60%),
-      rgba(8,16,34,.5)}
-  .rc.key dd{color:#fff;text-shadow:0 0 22px rgba(76,155,255,.65)}
+  .rc.key{background:rgba(9,16,30,.5);box-shadow:inset 0 -2px 0 rgba(76,155,255,.55)}
+  .rc.key dd{color:#fff}
   .rc.key dt{color:var(--acc-2)}
 
   .advice{padding:17px 18px 19px;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--brd-soft)}
@@ -184,16 +174,14 @@
   /* ── 차트 : 딥 네이비 패널 ── */
   .figbox{padding:16px 6px 10px;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;
     border-radius:var(--r-lg) var(--r-lg) 0 0;
-    background:
-      radial-gradient(90% 70% at 50% 108%, rgba(76,155,255,.24) 0%, transparent 66%),
-      linear-gradient(180deg, rgba(6,12,26,.80), rgba(4,8,18,.90))}
+    background:rgba(4,9,19,.72)}
   .figbox svg{display:block;min-width:760px;width:100%;height:auto}
-  .gmin{stroke:rgba(140,180,255,.075);stroke-width:1}
-  .gdiv{stroke:rgba(140,180,255,.20);stroke-width:1}
+  .gmin{stroke:rgba(140,180,255,.045);stroke-width:1}
+  .gdiv{stroke:rgba(140,180,255,.15);stroke-width:1}
   .axis,.tick{stroke:rgba(140,180,255,.34);stroke-width:1}
-  .zone{fill:rgba(76,155,255,.10)}
-  .rline{stroke:rgba(140,180,255,.30);stroke-width:1.15}
-  .rhl{stroke:var(--acc);stroke-width:2.5}
+  .zone{fill:rgba(76,155,255,.055)}
+  .rline{stroke:rgba(140,180,255,.13);stroke-width:1}
+  .rhl{stroke:var(--acc);stroke-width:2}
   .rlbl{fill:var(--steel-2);font-family:var(--mono);font-size:10px}
   .rlblhl{fill:var(--acc-2);font-family:var(--mono);font-size:11.5px;font-weight:700}
   .zlbl{fill:var(--steel-2);font-family:var(--body);font-size:11px}
@@ -227,7 +215,7 @@
   /* ── 표 ── */
   .scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;
     border-radius:var(--r-lg) var(--r-lg) 0 0;
-    background:linear-gradient(180deg, rgba(6,12,26,.72), rgba(4,8,18,.84))}
+    background:rgba(4,9,19,.62)}
   table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:620px}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--rule-soft)}
   thead th{font-family:var(--mono);font-size:.59rem;letter-spacing:.13em;text-transform:uppercase;color:var(--steel);
@@ -239,7 +227,7 @@
   td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
   .idx{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50%;
     background:linear-gradient(180deg,var(--acc-2),var(--acc-deep));color:#fff;font-family:var(--mono);
-    font-size:.66rem;font-weight:700;box-shadow:0 0 14px rgba(76,155,255,.7), inset 0 1px 0 rgba(255,255,255,.5)}
+    font-size:.66rem;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
   .idx.old{background:transparent;color:var(--acc-2);border:1.5px solid var(--acc);box-shadow:none}
   .vs{font-family:var(--mono);font-size:.61rem;font-weight:600;letter-spacing:.07em;padding:4px 9px;
     border-radius:999px;white-space:nowrap}
@@ -251,8 +239,8 @@
   .legend{display:flex;flex-wrap:wrap;gap:9px 20px;font-size:.76rem;color:var(--ink-2);padding:12px 17px 14px}
   .legend span{display:inline-flex;align-items:center;gap:6px}
   .sw{width:18px;height:0;border-top:2px solid rgba(140,180,255,.4)}
-  .sw.hl{border-top-color:var(--acc);border-top-width:3px;box-shadow:0 0 8px var(--acc)}
-  .dt{width:10px;height:10px;border-radius:50%;background:var(--acc-2);box-shadow:0 0 10px var(--acc)}
+  .sw.hl{border-top-color:var(--acc);border-top-width:3px}
+  .dt{width:10px;height:10px;border-radius:50%;background:var(--acc-2)}
   .dt.o{background:transparent;border:2px solid var(--acc);box-shadow:none}
   .bx{width:14px;height:10px;background:rgba(76,155,255,.18);border:1px solid var(--rule);border-radius:3px}
   .tk{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2)}
@@ -538,7 +526,7 @@
     if(G.nw){svg.classList.add("nw");}else{svg.classList.remove("nw");}
 
     var g=[],i,t,e;
-    var sd=G.nw?13:6.5;
+    var sd=G.nw?7:3.5;
     g.push('<defs><filter id="glw" x="-60%" y="-60%" width="220%" height="220%">'+
            '<feGaussianBlur stdDeviation="'+sd+'" result="b"/>'+
            '<feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>'+
@@ -561,7 +549,7 @@
       var k=dose/bev, sg=clip(k); if(!sg) return;
       var hl=curR!==null&&near(R,curR,0.06);
       var nm="1:"+(R%1?R.toFixed(1):R);
-      g.push('<line class="'+(hl?"rhl":"rline")+'"'+(hl?' filter="url(#glw)"':'')+' x1="'+sx(sg[0][0]).toFixed(1)+'" y1="'+sy(sg[0][1]).toFixed(1)+'" x2="'+sx(sg[1][0]).toFixed(1)+'" y2="'+sy(sg[1][1]).toFixed(1)+'"/>');
+      g.push('<line class="'+(hl?"rhl":"rline")+'" x1="'+sx(sg[0][0]).toFixed(1)+'" y1="'+sy(sg[0][1]).toFixed(1)+'" x2="'+sx(sg[1][0]).toFixed(1)+'" y2="'+sy(sg[1][1]).toFixed(1)+'"/>');
       if(!hl && !G.ratioLbl) return;
       var e2=sg[1][0],t2=sg[1][1],a2=(e2>=EH-0.01)?"end":"middle",dx=(a2==="end")?-6:0,dy=(a2==="end")?-8:-9;
       g.push('<text class="'+(hl?"rlblhl":"rlbl")+'" x="'+(sx(e2)+dx).toFixed(1)+'" y="'+(sy(t2)+dy).toFixed(1)+'" text-anchor="'+a2+'">'+nm+'</text>');
