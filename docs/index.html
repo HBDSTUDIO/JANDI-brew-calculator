@@ -23,7 +23,7 @@
     --ink:#F3F7FC; --ink-2:#AFC0D6; --steel:#8598B2; --steel-2:#7A8DA5;
     /* 블루 액센트 */
     --acc:#4C9BFF; --acc-2:#7BB6FF; --acc-deep:#1E6BFF; --cyan:#35D6F5; --violet:#8B7BFF;
-    --acc-wash:rgba(76,155,255,.16); --on-acc:#04101F;
+    --acc-wash:rgba(76,155,255,.16); --on-acc:#04101F; --tgt-c:#FF5A52;
     /* 의미색 */
     --good:#4FE0A6; --good-wash:rgba(79,224,166,.14);
     --warn:#FFC46B; --warn-wash:rgba(255,196,107,.14);
@@ -132,20 +132,28 @@
   .hint.err{color:var(--bad);font-weight:600}
 
   /* ── 목표 ── */
-  .tgtrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:11px 18px;padding:14px 15px;
-    background:rgba(76,155,255,.055);
-    border-top:1px solid var(--brd-soft);border-bottom:1px solid var(--brd-soft)}
-  .tgtlab{font-family:var(--mono);font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;
-    color:var(--cyan);font-weight:700;padding-bottom:5px}
-  .tgtf{display:flex;align-items:baseline;gap:7px;min-width:0}
-  .tgtf label{font-family:var(--mono);font-size:.66rem;color:var(--steel);white-space:nowrap}
-  .tgtf input{font-family:var(--mono);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;
-    background:transparent;border:0;border-bottom:1.5px solid var(--cyan);color:var(--ink);
-    padding:2px 0 3px;width:66px;text-align:right}
-  .tgtf input:focus{outline:0;border-bottom-width:2.5px}
-  .tgtnote{font-size:.75rem;color:var(--warn);flex:1 1 160px}
-  .tgt{stroke:var(--ink-2);stroke-width:1.5;fill:none}
-  .tgtlbl{fill:var(--ink-2);font-family:var(--mono);font-size:10.5px;font-weight:700}
+  /* 목표 슬라이더 — 현재 비율선 위, SCA Ideal 구간만 이동 */
+  .tslide{display:flex;align-items:center;gap:12px;padding:4px 18px 12px}
+  .tslide label{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--tgt-c);font-weight:700;white-space:nowrap}
+  .tslide input[type=range]{
+    -webkit-appearance:none;appearance:none;flex:1 1 auto;min-width:0;height:26px;
+    background:transparent;cursor:pointer;margin:0}
+  .tslide input[type=range]::-webkit-slider-runnable-track{
+    height:4px;border-radius:999px;background:rgba(140,180,255,.22)}
+  .tslide input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--tgt-c);border:2px solid #0A1220;margin-top:-7px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+  .tslide input[type=range]::-moz-range-track{
+    height:4px;border-radius:999px;background:rgba(140,180,255,.22)}
+  .tslide input[type=range]::-moz-range-thumb{
+    width:18px;height:18px;border-radius:50%;background:var(--tgt-c);border:2px solid #0A1220}
+  .tslide input[type=range]:focus-visible{outline:2px solid var(--tgt-c);outline-offset:4px;border-radius:999px}
+  .tval{font-family:var(--mono);font-size:.76rem;font-variant-numeric:tabular-nums;
+    color:var(--ink-2);white-space:nowrap;min-width:11.5em;text-align:right}
+  .tgtdot{fill:var(--tgt-c)}
+  .tgtring{fill:#0A1220}
 
   /* ── 결과 타일 : 핵심 두 개만 그라디언트 발광 ── */
   .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:1px;background:var(--brd-soft);
@@ -203,8 +211,6 @@
   svg.nw .atick{font-size:24px}
   svg.nw .axtitle{font-size:27px}
   svg.nw .plbl{font-size:26px}
-  svg.nw .tgt{stroke-width:3}
-  svg.nw .tgtlbl{font-size:24px}
   svg.nw .pt.old{stroke-width:4}
   svg.nw .pt.sel{stroke-width:4}
 
@@ -240,7 +246,7 @@
   .dt{width:10px;height:10px;border-radius:50%;background:var(--acc-2)}
   .dt.o{background:transparent;border:2px solid var(--acc);box-shadow:none}
   .bx{width:14px;height:10px;background:rgba(76,155,255,.18);border:1px solid var(--rule);border-radius:3px}
-  .tk{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2)}
+  .tk{width:9px;height:9px;border-radius:50%;background:var(--tgt-c)}
 
   @media (max-width:600px){
     .wrap{padding:14px 11px 56px;gap:14px}
@@ -248,6 +254,8 @@
     .f{padding:12px 13px 14px}
     .f input{font-size:17px}
     button{padding:14px 21px;font-size:.92rem}
+    .tslide{padding:2px 14px 12px;gap:9px}
+    .tval{font-size:.72rem;min-width:10.5em}
     .del{padding:11px 13px;font-size:1.2rem}
     table{min-width:560px}
     th,td{padding:13px 12px}
@@ -316,14 +324,6 @@
           <div class="f"><label for="i-water">물 g</label>
             <input type="number" id="i-water" step="1" min="1" value="250"></div>
         </div>
-        <div class="tgtrow">
-          <p class="tgtlab">목표 지점</p>
-          <div class="tgtf"><label for="i-tey">수율 %</label>
-            <input type="number" id="i-tey" step="0.1" min="14" max="26" value="20.0"></div>
-          <div class="tgtf"><label for="i-ttds">TDS %</label>
-            <input type="number" id="i-ttds" step="0.01" min="0.80" max="2.00" value="1.40"></div>
-          <p class="tgtnote" id="tgtnote"></p>
-        </div>
         <div class="frow">
           <button type="submit" class="primary">점 찍기</button>
           <button type="button" class="ghost" id="b-copy">링크 복사</button>
@@ -347,13 +347,18 @@
     <div class="card">
       <div class="figbox"><svg id="chart" viewBox="0 0 860 620" role="img"
         aria-label="SCA 추출 관리 차트. 가로축 추출 수율 14~26%, 세로축 TDS 0.90~1.80%. SCA Ideal 영역은 수율 18~22%, TDS 1.15~1.45%."></svg></div>
+      <div class="tslide">
+        <label for="i-tgt">목표</label>
+        <input type="range" id="i-tgt" min="18" max="22" step="0.05" aria-describedby="tgt-val">
+        <span class="tval" id="tgt-val"></span>
+      </div>
       <div class="legend">
         <span><span class="sw hl"></span><span id="lg-ratio">현재 비율</span></span>
         <span><span class="sw"></span>다른 비율</span>
         <span><span class="dt"></span>최근 기록</span>
         <span><span class="dt o"></span>이전 기록</span>
         <span><span class="bx"></span>SCA Ideal</span>
-        <span><span class="tk"></span>목표 지점</span>
+        <span><span class="tk"></span>목표</span>
       </div>
     </div>
   </section>
@@ -458,6 +463,30 @@
   }
   function fmt(x,d){return x.toFixed(d===undefined?2:d);}
 
+  /* 현재 레시피(비율)에서 목표가 움직일 수 있는 구간.
+     비율이 고정되면 TDS = 수율 x 도징 / 서빙 로 묶이므로 자유도는 1개다. */
+  function tctx(){
+    var last=S.rec[S.rec.length-1], dose, bev;
+    if(last){ dose=last.dose; bev=last.bev; }
+    else{
+      dose=parseFloat(document.getElementById("i-dose").value)||15;
+      var w=parseFloat(document.getElementById("i-water").value)||250;
+      bev=w-dose*2.4;
+    }
+    if(!(bev>0)) bev=dose*14;
+    var lo=Math.max(BOX.eLo, BOX.tLo*bev/dose);
+    var hi=Math.min(BOX.eHi, BOX.tHi*bev/dose);
+    if(hi<lo){ var m=(lo+hi)/2; lo=m; hi=m; }
+    return {dose:dose,bev:bev,lo:lo,hi:hi};
+  }
+  function syncTarget(){
+    var c=tctx();
+    if(!isFinite(S.tEy)) S.tEy=20;
+    S.tEy=Math.min(c.hi,Math.max(c.lo,S.tEy));
+    S.tTds=S.tEy*c.dose/c.bev;
+    return c;
+  }
+
   function advise(r){
     var c=calc(r), v=verdict(c.ey,r.tds), sn=sens(r.bean);
     var hiByTds=BOX.tHi*r.bev/r.dose, loByTds=BOX.tLo*r.bev/r.dose;
@@ -481,15 +510,7 @@
     }else{
       out.lines.push({big:true,t:"분쇄도를 <strong>"+fmt(ng,2)+"</strong>으로 <strong>"+fmt(-d,2)+"넘버 굵게</strong>."});
     }
-    out.lines.push({t:"목표 수율 <strong>"+fmt(target)+"%</strong>에 닿으면 이 비율에서 TDS는 <strong>"+fmt(projTds)+"%</strong>가 됩니다."});
-    if(Math.abs(projTds-S.tTds)>0.02){
-      var nb=target*r.dose/S.tTds, nw=nb+c.ret*r.dose;
-      out.lines.push({t:"목표 TDS <strong>"+fmt(S.tTds)+"%</strong>까지 같이 맞추려면 비율을 <strong>1:"+fmt(nw/r.dose,1)+
-        "</strong>(물 "+fmt(nw,0)+"g)로 바꿔야 합니다. 지금 비율로는 두 목표가 동시에 성립하지 않습니다."});
-    }
-    if(target<BOX.eLo||target>BOX.eHi||S.tTds<BOX.tLo||S.tTds>BOX.tHi){
-      out.lines.push({t:"참고 — 설정한 목표가 SCA 박스(수율 18~22%, TDS 1.15~1.45%) 밖입니다."});
-    }
+    out.lines.push({t:"목표 수율 <strong>"+fmt(target)+"%</strong> · 이 비율에서 TDS <strong>"+fmt(projTds)+"%</strong>"});
     if(v.k==="strong"){
       var bev2=c.ey*r.dose/1.40, w2=bev2+c.ret*r.dose;
       out.lines.push({t:"수율을 지키면서 농도만 낮추려면 비율을 <strong>1:"+fmt(w2/r.dose,1)+"</strong>로 묽게 하는 방법도 있습니다."});
@@ -588,13 +609,9 @@
     g.push('<text class="axtitle" transform="translate('+(G.nw?34:24)+','+((Y0+Y1)/2).toFixed(1)+') rotate(-90)" text-anchor="middle">농도 TDS (%)</text>');
 
     if(S.tEy>=EL&&S.tEy<=EH&&S.tTds>=TL&&S.tTds<=TH){
-      var tx=sx(S.tEy), ty=sy(S.tTds), L=G.nw?30:15, I=G.nw?9:4;
-      g.push('<circle class="tgt" cx="'+tx.toFixed(1)+'" cy="'+ty.toFixed(1)+'" r="'+(G.nw?18:9)+'"/>');
-      g.push('<line class="tgt" x1="'+(tx-L).toFixed(1)+'" y1="'+ty.toFixed(1)+'" x2="'+(tx-I-(G.nw?9:0)).toFixed(1)+'" y2="'+ty.toFixed(1)+'"/>');
-      g.push('<line class="tgt" x1="'+(tx+I+(G.nw?9:0)).toFixed(1)+'" y1="'+ty.toFixed(1)+'" x2="'+(tx+L).toFixed(1)+'" y2="'+ty.toFixed(1)+'"/>');
-      g.push('<line class="tgt" x1="'+tx.toFixed(1)+'" y1="'+(ty-L).toFixed(1)+'" x2="'+tx.toFixed(1)+'" y2="'+(ty-I-(G.nw?9:0)).toFixed(1)+'"/>');
-      g.push('<line class="tgt" x1="'+tx.toFixed(1)+'" y1="'+(ty+I+(G.nw?9:0)).toFixed(1)+'" x2="'+tx.toFixed(1)+'" y2="'+(ty+L).toFixed(1)+'"/>');
-      g.push('<text class="tgtlbl" x="'+tx.toFixed(1)+'" y="'+(ty-L-(G.nw?12:6)).toFixed(1)+'" text-anchor="middle">목표</text>');
+      var tx=sx(S.tEy), ty=sy(S.tTds);
+      g.push('<circle class="tgtring" cx="'+tx.toFixed(1)+'" cy="'+ty.toFixed(1)+'" r="'+(G.nw?13:6.5)+'"/>');
+      g.push('<circle class="tgtdot"  cx="'+tx.toFixed(1)+'" cy="'+ty.toFixed(1)+'" r="'+(G.nw?9:4.5)+'"/>');
     }
 
     S.rec.forEach(function(r,i){
@@ -612,6 +629,12 @@
   }
 
   function render(){
+    var c0=syncTarget(), sl=document.getElementById("i-tgt");
+    sl.min=c0.lo.toFixed(2); sl.max=c0.hi.toFixed(2); sl.step="0.05";
+    sl.value=S.tEy.toFixed(2);
+    sl.disabled=(c0.hi-c0.lo)<0.01;
+    document.getElementById("tgt-val").textContent=
+      "수율 "+fmt(S.tEy)+"% · TDS "+fmt(S.tTds)+"%";
     var tb=document.getElementById("tb"), rows=[];
     S.rec.forEach(function(r,i){
       var c=calc(r), v=verdict(c.ey,r.tds), newest=(i===S.rec.length-1);
@@ -668,19 +691,16 @@
     document.getElementById("i-grind").focus();
   });
 
-  function syncTargets(){
-    var a=parseFloat(document.getElementById("i-tey").value),
-        b=parseFloat(document.getElementById("i-ttds").value),
-        n=document.getElementById("tgtnote"), msg="";
-    if(isFinite(a)&&a>=10&&a<=30) S.tEy=a; else msg="수율 목표를 확인해주세요.";
-    if(isFinite(b)&&b>=0.5&&b<=3)  S.tTds=b; else msg="TDS 목표를 확인해주세요.";
-    n.textContent=msg; save(); render();
-  }
   var _rt;
   window.addEventListener("resize",function(){clearTimeout(_rt);_rt=setTimeout(chart,150);});
   window.addEventListener("orientationchange",function(){setTimeout(chart,300);});
-  document.getElementById("i-tey").addEventListener("input",syncTargets);
-  document.getElementById("i-ttds").addEventListener("input",syncTargets);
+  document.getElementById("i-tgt").addEventListener("input",function(ev){
+    var v=parseFloat(ev.target.value);
+    if(isFinite(v)){ S.tEy=v; save(); render(); }
+  });
+  ["i-dose","i-water"].forEach(function(id){
+    document.getElementById(id).addEventListener("input",function(){ if(!S.rec.length) render(); });
+  });
   document.getElementById("b-copy").addEventListener("click",copyLink);
   document.getElementById("b-reset").addEventListener("click",function(){
     if(S.rec.length&&!confirm("기록을 모두 지울까요?"))return;
@@ -700,8 +720,6 @@
   });
 
   load();
-  document.getElementById("i-tey").value=S.tEy;
-  document.getElementById("i-ttds").value=S.tTds;
   render();
 })();
 </script>
