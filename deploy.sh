@@ -23,5 +23,15 @@ echo "서비스워커 캐시: v$cur -> v$next"
 git commit -q -m "$msg (sw v$next)"
 echo "기록: $msg"
 git push
+echo "GitHub 올림 완료"
+
+# Firebase 가 설정돼 있으면 같이 배포
+if [ -f .firebaserc ] && command -v firebase >/dev/null 2>&1; then
+  echo
+  echo "Firebase 배포 중..."
+  firebase deploy --only hosting
+  echo "Firebase 배포 완료"
+fi
+
 echo
 echo "완료! 1~2분 뒤 아이폰에서 반영됩니다."
